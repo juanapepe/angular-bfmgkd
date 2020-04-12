@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {of} from 'rxjs';
+import {of, from} from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -12,5 +12,13 @@ export class AppComponent implements OnInit  {
   ngOnInit() {
     let numbers$ = of(2, 4, 6, 8);
     numbers$.subscribe(console.log);
+
+    from([20, 15, 10, 5]).subscribe(console.log);
+
+    from([20, 15, 10, 5]).subscribe(
+      item => console.log(`resulting item .. ${item}`),
+      err => console.error(`error occured ${err}`),
+      () => console.log('complete')
+    );
   }
 }
