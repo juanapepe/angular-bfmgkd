@@ -13,9 +13,23 @@ export class AppComponent implements OnInit  {
     let numbers$ = of(2, 4, 6, 8);
     numbers$.subscribe(console.log);
 
-    from([20, 15, 10, 5]).subscribe(console.log);
+    const apples = [20, 15, 10, 5];
 
-    from([20, 15, 10, 5]).subscribe(
+    from(apples).subscribe(console.log);
+
+    from(apples).subscribe(
+      item => console.log(`resulting item .. ${item}`),
+      err => console.error(`error occured ${err}`),
+      () => console.log('complete')
+    );
+
+    of(apples).subscribe(
+      item => console.log(`resulting item .. ${item}`),
+      err => console.error(`error occured ${err}`),
+      () => console.log('complete')
+    );
+
+    of(...apples).subscribe( //takto to funguje jako s from
       item => console.log(`resulting item .. ${item}`),
       err => console.error(`error occured ${err}`),
       () => console.log('complete')
